@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build frontend') {
             steps {
-                echo 'Check ben sa times 2..'
+                sh "make buildFrontend"
             }
         }
         stage('Test') {
