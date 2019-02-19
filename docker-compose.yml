@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    build: ./super-heroes-frontend
+    ports:
+      - "4001:8081"
+
+  backend:
+    build: ./super-heroes-backend
+    expose:
+      - "8080"

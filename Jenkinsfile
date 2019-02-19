@@ -7,6 +7,11 @@ pipeline {
                 sh "make buildFrontend"
             }
         }
+        stage('Build backend') {
+            steps {
+                sh "make buildBackend"
+            }
+        }
         stage('Test') {
             steps {
                 echo 'Testing..'
