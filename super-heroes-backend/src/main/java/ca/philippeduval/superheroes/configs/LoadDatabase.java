@@ -17,8 +17,8 @@ public class LoadDatabase {
 	@Bean
 	CommandLineRunner initDatabase(SuperHeroRepository repository) {
 		return args -> {
-			logger.info("Preloading " + repository.save(new SuperHero("Bilbo Baggins")));
-			logger.info("Preloading " + repository.save(new SuperHero("Frodo Baggins")));
+//			logger.info("Preloading " + repository.save(new SuperHero("Bilbo Baggins")));
+//			logger.info("Preloading " + repository.save(new SuperHero("Frodo Baggins")));
 		};
 	}
 }
