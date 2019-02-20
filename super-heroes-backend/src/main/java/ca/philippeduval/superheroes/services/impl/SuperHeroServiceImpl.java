@@ -32,6 +32,12 @@ public class SuperHeroServiceImpl implements SuperHeroService {
 		}
 
 	}
+	
+	@Override
+	public SuperHero create(SuperHero hero) {
+		return repo.save(hero);
+	}
+
 
 
 }

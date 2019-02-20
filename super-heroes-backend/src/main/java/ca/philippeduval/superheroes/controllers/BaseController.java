@@ -12,5 +12,6 @@ public interface BaseController<T> {
 	
 	List<T> findAll();
 	T findById(Long id);
-	
+	T create(T object);
+
 }
