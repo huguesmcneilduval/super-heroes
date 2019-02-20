@@ -2,4 +2,4 @@
 set -e
 cd super-heroes-frontend
 npm install
-npm build
+npm run build
