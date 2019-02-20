@@ -15,5 +15,6 @@ public interface BaseController<T> {
 	T create(T object);
 	
 	T update(Long id, T object);
+	void delete(Long id);
 
 }

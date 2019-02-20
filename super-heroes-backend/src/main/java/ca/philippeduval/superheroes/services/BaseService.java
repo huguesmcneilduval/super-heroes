@@ -12,6 +12,7 @@ public interface BaseService<T> {
 	T create(T object);
 	
 	T save(Long id, T object);
+	void delete(Long id);
 
 
 }

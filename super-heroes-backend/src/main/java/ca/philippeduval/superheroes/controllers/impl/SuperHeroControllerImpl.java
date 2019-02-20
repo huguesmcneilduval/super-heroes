@@ -45,4 +45,10 @@ public class SuperHeroControllerImpl implements SuperHeroController {
 		
 	}	
 
+	@Override
+    @RequestMapping(value = "/superhero/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Long id) {
+		service.delete(id);
+	}
+
 }
