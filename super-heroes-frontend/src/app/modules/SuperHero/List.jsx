@@ -44,7 +44,7 @@ export default class List extends Component {
             <div>
                 <NavLink className="btn btn-default btn-success" to={Route.create}>Create new Hero</NavLink>
                 <Table>
-                    onest dans la liste
+                    ALLO MONSEUR
                     <thead>
                         <tr>
                             <th>#</th>
