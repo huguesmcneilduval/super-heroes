@@ -17,9 +17,14 @@ pipeline {
                 echo 'Testing..'
             }
         }
+        stage('Integrate') {
+            steps {
+                sh "make integrate"
+            }
+        }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh "make deploy"
             }
         }
     }
