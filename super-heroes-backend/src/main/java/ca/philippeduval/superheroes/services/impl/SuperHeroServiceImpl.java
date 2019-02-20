@@ -37,6 +37,22 @@ public class SuperHeroServiceImpl implements SuperHeroService {
 	public SuperHero create(SuperHero hero) {
 		return repo.save(hero);
 	}
+	
+	@Override
+	public SuperHero save(Long id, SuperHero hero) {
+		Optional<SuperHero> optHero = repo.findById(id);
+
+		if (optHero.isPresent()) {
+			SuperHero dbHero = optHero.get();
+			dbHero.setFirstname(hero.getFirstname());
+			dbHero.setLastname(hero.getLastname());
+			dbHero.setSuperheroname(hero.getSuperheroname());
+			dbHero.setMissions(hero.getMissions());
+			return repo.save(dbHero);
+		} else {
+			return null;
+		}
+	}
 
 
 

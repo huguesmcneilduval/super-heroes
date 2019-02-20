@@ -37,5 +37,12 @@ public class SuperHeroControllerImpl implements SuperHeroController {
 	public SuperHero create(@RequestBody SuperHero hero) {
 		return service.create(hero);
 	}
+	
+	@Override
+    @RequestMapping(value = "/superhero/{id}", method = RequestMethod.PUT)
+	public SuperHero update(@PathVariable("id") Long id, @RequestBody SuperHero hero) {
+		return service.save(id, hero);
+		
+	}	
 
 }
