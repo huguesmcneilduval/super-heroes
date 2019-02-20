@@ -10,12 +10,16 @@ public class Mission {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	private String missionName;
 
 	private boolean isCompleted;
 	private boolean isDeleted;
 	
 	public Mission() {
+	}
+	public Long getId() {
+		return id;
 	}
 
 	public String getMissionName() {
