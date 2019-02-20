@@ -10,6 +10,8 @@ public interface BaseService<T> {
 
 	T findById(Long id);
 	T create(T object);
+	
+	T save(Long id, T object);
 
 
 }
