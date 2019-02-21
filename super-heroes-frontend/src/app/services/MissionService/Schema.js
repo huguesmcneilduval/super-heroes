@@ -1,5 +1,5 @@
 export default {
-    missionName : "Kill them all",
+    missionName : "",
     isCompleted : false,
     isDeleted : false,
     heroes : []

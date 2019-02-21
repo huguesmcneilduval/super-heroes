@@ -1,4 +1,4 @@
 #!/bin/bash
 set -e
 cd super-heroes-backend
-mvn -Dmaven.test.skip=true install
+mvn clean install
