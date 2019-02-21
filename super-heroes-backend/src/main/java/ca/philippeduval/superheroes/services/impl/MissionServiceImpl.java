@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import ca.philippeduval.superheroes.beans.Mission;
 import ca.philippeduval.superheroes.repositories.MissionRepository;
 import ca.philippeduval.superheroes.services.MissionService;
+import ca.philippeduval.superheroes.services.exceptions.BadRequestException;
+import ca.philippeduval.superheroes.services.exceptions.IllegalActionException;
 
 @Service
 public class MissionServiceImpl implements MissionService {
@@ -43,8 +45,19 @@ public class MissionServiceImpl implements MissionService {
 	}
 
 	@Override
-	public void delete(Long id) {
-		repo.deleteById(id);
+	public void delete(Long id) throws IllegalActionException, BadRequestException {
+		Optional<Mission> OptMission = repo.findById(id);
+
+		if (OptMission.isPresent()) {
+			Mission mission = OptMission.get();
+			if(mission.isCompleted()) {
+				throw new IllegalActionException();
+			}
+			mission.setDeleted(true);
+			repo.save(mission);
+		} else {
+			throw new BadRequestException();
+		}
 	}
 
 }

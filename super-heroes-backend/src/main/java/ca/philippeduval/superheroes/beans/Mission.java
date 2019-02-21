@@ -1,10 +1,17 @@
 package ca.philippeduval.superheroes.beans;
 
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
+import org.hibernate.annotations.Where;
 
 @Entity
+@Where(clause="is_deleted=0")
 public class Mission {
 	
 	@Id
@@ -14,52 +21,68 @@ public class Mission {
 	private String missionName;
 
 	private boolean isCompleted;
+
+	@Column(name="is_deleted")
 	private boolean isDeleted;
+
 	
 	public Mission() {
 	}
+
+	/**
+	 * @return the id
+	 */
 	public Long getId() {
 		return id;
 	}
 
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @return the missionName
+	 */
 	public String getMissionName() {
 		return missionName;
 	}
 
+	/**
+	 * @param missionName the missionName to set
+	 */
 	public void setMissionName(String missionName) {
 		this.missionName = missionName;
 	}
 
-	public Mission(String missionName) {
-		super();
-		this.missionName = missionName;
-	}
-
+	/**
+	 * @return the isCompleted
+	 */
 	public boolean isCompleted() {
 		return isCompleted;
 	}
 
-	public void setIsCompleted(boolean isCompleted) {
+	/**
+	 * @param isCompleted the isCompleted to set
+	 */
+	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
 	}
 
+	/**
+	 * @return the isDeleted
+	 */
 	public boolean isDeleted() {
 		return isDeleted;
 	}
 
-	public Mission(String missionName, boolean isCompleted, boolean isDeleted) {
-		super();
-		this.missionName = missionName;
-		this.isCompleted = isCompleted;
+	/**
+	 * @param isDeleted the isDeleted to set
+	 */
+	public void setDeleted(boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-
-	public void setIsDeleted(boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	
-	
-	
 	
 }
