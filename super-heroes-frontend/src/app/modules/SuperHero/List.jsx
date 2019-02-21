@@ -38,19 +38,20 @@ export default class List extends Component {
                 <td>{hero.firstname}</td>
                 <td>{hero.lastname}</td>
                 <td>{hero.superheroname}</td>
+                <td>{hero.missions.length | 0}</td>
             </tr>
         ));
         return (
             <div>
                 <NavLink className="btn btn-default btn-success" to={Route.create}>Create new Hero</NavLink>
                 <Table>
-                    ALLO MONSEUR
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Super Hero Name</th>
+                            <th># Missions</th>
                         </tr>
                     </thead>
                     <tbody>

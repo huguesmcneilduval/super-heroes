@@ -43,11 +43,18 @@ export default class Create extends Component {
                 <h1>Hello {hero.superheroname}</h1>
                 <Form onSubmit={e => e.preventDefault()}>
                     <SuperHeroForm hero={hero}></SuperHeroForm>
+
                     <Button className="btn btn-default btn-danger float-top float-right" onClick={this.doDelete}>Delete</Button>
+
                     <NavLink className="btn btn-default btn-success" to={Route.edit.replace(":id", hero.id)}>Edit Super Hero</NavLink>
+
+                    <NavLink className="btn btn-default btn-success ml-2" to={Route.editMission.replace(":id", hero.id)}>Add/remove missions</NavLink>
+
                     <NavLink className="btn btn-default btn-danger float-right" to={Route.main}>Cancel</NavLink>
                 </Form>
             </Container>
         )
     }
 }
+
+
