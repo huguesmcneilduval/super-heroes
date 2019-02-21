@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     stages {
+         stage('Build backend') {
+            steps {
+                sh "make buildBackend"
+            }
+        }
         stage('Build frontend') {
             steps {
                 sh "make buildFrontend"
-            }
-        }
-        stage('Build backend') {
-            steps {
-                sh "make buildBackend"
             }
         }
         stage('Test') {
