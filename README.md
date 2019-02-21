@@ -21,3 +21,6 @@ npm install
 cd super-heroes-backend
 mvn clean install
 ``̀`
+
+## Swagger
+url : https://superheroes.philippeduval.ca/api/swagger-ui.html#/
