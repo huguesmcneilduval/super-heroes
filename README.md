@@ -15,3 +15,9 @@ cd super-heroes-frontend
 npm install
 ``̀`
 
+## Backend
+### Installation
+```bash
+cd super-heroes-backend
+mvn clean install
+``̀`
