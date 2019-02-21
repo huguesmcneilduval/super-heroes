@@ -1,26 +1,28 @@
 import React, { Component } from 'react'
-import { Form as SuperHeroForm } from ".";
+import { Form as MissionForm } from ".";
 
 import { NavLink } from "react-router-dom";
 
 import { Container, Form, Button } from "reactstrap";
-import SuperHeroService, { Schema as SuperHeroSchema } from "../../services/SuperHeroService";
+import MissionService, { Schema } from "../../services/MissionService";
 
 import { Route } from '.';
 
 export default class Create extends Component {
     constructor(props, context) {
         super(props, context);
-        this.doDelete = this.doDelete.bind(this)
+        this.doDelete = this.doDelete.bind(this);
+        this.doComplete = this.doComplete.bind(this);
+
         this.state = {
-            hero: SuperHeroSchema
+            mission: Schema
         }
     }
     componentDidMount() {
-        SuperHeroService.findById(this.props.match.params.id, (err, hero) => {
+        MissionService.findById(this.props.match.params.id, (err, mission) => {
             if (!err) {
                 this.setState({
-                    hero: hero
+                    mission: mission
                 });
             } else {
                 alert("CATASTROPHE");
@@ -29,23 +31,46 @@ export default class Create extends Component {
     }
 
     doDelete() {
-        SuperHeroService.delete(this.state.hero.id, (err) => {
+        MissionService.delete(this.state.mission.id, (err) => {
             if (!err) {
                 this.props.history.push(Route.main);
             }
         })
     }
+    doComplete(e) {
+        e.preventDefault();
+        const { mission } = this.state;
+        this.save({
+            ...mission,
+            completed: true
+        });
+
+    }
+    save(mission) {
+        MissionService.save(mission.id, mission, (err) => {
+            if (!err) {
+                this.props.history.push(Route.main);
+            } else {
+                alert("SOMETHING WENT WRONG!");
+            }
+        });
+    }
 
     render() {
-        const { hero } = this.state;
+        const { mission } = this.state;
         return (
             <Container className="mb-5 pb-5">
-                <h1>Hello {hero.superheroname}</h1>
+                <h1>Mission : {mission.missionName}</h1>
                 <Form onSubmit={e => e.preventDefault()}>
-                    <SuperHeroForm hero={hero}></SuperHeroForm>
-                    <Button className="btn btn-default btn-danger float-top float-right" onClick={this.doDelete}>Delete</Button>
-                    <NavLink className="btn btn-default btn-success" to={Route.edit.replace(":id", hero.id)}>Edit Super Hero</NavLink>
+                    <MissionForm mission={mission}></MissionForm>
+
+                    <NavLink className="btn btn-default btn-success" to={Route.edit.replace(":id", mission.id)}>Edit Mission</NavLink>
+
+                    <Button className="btn btn-default btn-success" disabled={mission.completed} onClick={this.doComplete}>{mission.completed ? "Completed" : "Mark as completed"}</Button>
+
                     <NavLink className="btn btn-default btn-danger float-right" to={Route.main}>Cancel</NavLink>
+
+                    <Button className="btn btn-default btn-danger float-top float-right" onClick={this.doDelete} disabled={mission.completed}>{mission.completed ? "Cannot delete completed mission" : "Delete"}</Button>
                 </Form>
             </Container>
         )

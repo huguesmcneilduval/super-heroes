@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { FormGroup, Label, Input, FormText } from 'reactstrap';
 
+import { ListTable as MissionTable } from "../Mission";
+
 import Helper from "../../Helpers";
 
 const FormControl = (props) => {
@@ -36,6 +38,8 @@ export default class SuperHeroForm extends Component {
                     <FormControl type="superheroname" name="superheroname" id="superheroname" placeholder="Super Hero Name"
                         value={hero.superheroname} onChange={onChange} />
                 </FormGroup>
+
+                {!Helper.isFunction(onChange) ? (<MissionTable missions={hero.missions}></MissionTable>) : null}
             </div>
         )
     }

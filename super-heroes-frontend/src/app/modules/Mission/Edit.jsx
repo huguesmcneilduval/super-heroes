@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Form as SuperHeroForm } from ".";
+import { Form as MissionForm } from "./";
 
 import { NavLink } from "react-router-dom";
 
 import { Container, Form, Button } from "reactstrap";
-import SuperHeroService, { Schema as SuperHeroSchema } from "../../services/SuperHeroService";
+import MissionService, { Schema } from "../../services/MissionService";
 
 import { Route } from '.';
 
@@ -13,53 +13,60 @@ export default class Edit extends Component {
         super(props, context);
         this.onChange = this.onChange.bind(this);
         this.doSubmit = this.doSubmit.bind(this);
+        this.save = this.save.bind(this)
 
         this.state = {
-            hero: SuperHeroSchema
+            mission: Schema
         }
     }
 
-    componentDidMount () {
-      SuperHeroService.findById(this.props.match.params.id, (err, hero) => {
-          if(!err) {
-              this.setState({
-                  hero : hero
-              })
-          }
-      })
+    componentDidMount() {
+        MissionService.findById(this.props.match.params.id, (err, mission) => {
+            if (!err) {
+                this.setState({
+                    mission: mission
+                })
+            }
+        })
     }
-    
+
 
     onChange(e) {
         const { name, value } = e.target;
         this.setState({
-            hero: {
-                ...this.state.hero,
+            mission: {
+                ...this.state.mission,
                 [name]: value
             }
         })
 
     }
+   
     doSubmit(e) {
         e.preventDefault();
-        const { hero } = this.state;
+        const { mission } = this.state;
+        this.save(mission);
 
-        SuperHeroService.save(hero.id, hero, (err) => {
+    }
+
+    save(mission) {
+        MissionService.save(mission.id, mission, (err) => {
             if (!err) {
                 this.props.history.push(Route.main);
             } else {
                 alert("SOMETHING WENT WRONG!");
             }
-        })
+        });
     }
+
     render() {
-        const { hero } = this.state;
+        const { mission } = this.state;
         return (
             <Container className="mb-5 pb-5">
-                <h1>Create Hero</h1>
+                <h1>Edit Mission</h1>
                 <Form onSubmit={this.doSubmit}>
-                    <SuperHeroForm hero={hero} onChange={this.onChange}></SuperHeroForm>
-                    <Button className="btn btn-default btn-success" onClick={this.doSubmit}>Create</Button>
+                    <MissionForm mission={mission} onChange={this.onChange}></MissionForm>
+                    <Button className="btn btn-default btn-success" onClick={this.doSubmit}>Save</Button>
                     <NavLink className="btn btn-default btn-danger float-right" to={Route.main}>Cancel</NavLink>
                 </Form>
             </Container>
