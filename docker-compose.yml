@@ -1,11 +1,12 @@
 version: '3'
 services:
   web:
-    build: ./super-heroes-frontend
+    image: huguesmcd/super-heroes:frontend-latest
     ports:
       - "4001:8081"
 
   backend:
-    build: ./super-heroes-backend
+    image: huguesmcd/super-heroes:backend-latest
+
     expose:
       - "8080"
