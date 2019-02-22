@@ -2,7 +2,7 @@ FROM node as builder
 COPY src .
 COPY public .
 COPY package.json .
-COPY package-lock.json
+COPY package-lock.json .
 RUN npm install
 RUN npm run build
 COPY build /usr/share/superhero/html
