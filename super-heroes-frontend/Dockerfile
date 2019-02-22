@@ -1,9 +1,9 @@
 FROM node as builder
 WORKDIR /tmp/dockerbuild
-COPY src .
-COPY public .
-COPY package.json .
-COPY package-lock.json .
+COPY src ./src
+COPY public ./public
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
 RUN npm run build
 
